@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 require_once 'Car.php';
+
 class Procurement extends Car
 {
     private string $spare;
