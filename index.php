@@ -1,30 +1,19 @@
 <?php
 declare(strict_types=1);
 
-require_once 'CarMaster/Client.php';
-require_once 'CarMaster/Consumables.php';
-require_once 'CarMaster/PriceList.php';
-require_once 'CarMaster/Procurement.php';
+require_once 'CarMaster/Car.php';
+require_once 'CarMaster/Wheels.php';
 
 try {
-    $firsCar = new Consumables();
 
-    $firsCar->setOil('Mobil');
-    $firsCar->setAntifreeze('Felix');
-    $firsCar->setQuantityOil(5);
-    $firsCar->setQuantityAntifreeze(8);
+    $firstCar = new Wheels();
+    $firstCar->setNameCar('Ford');
+    $firstCar->setModelCar('Shelby GT 500');
+    $firstCar->setManufacturer('Michelin');
+    $firstCar->setSize(18);
 
-    $secondCar = new Client();
-    $secondCar->setFirstName('John');
-    $secondCar->setLastName('Wick');
+    echo $firstCar->getFullInfo();
 
-    $thirdCar = new Procurement();
-    $thirdCar->setNameCar('Ford');
-    $thirdCar->setModelCar('Shelby GT');
-    $thirdCar->setHorsePower(650);
-
-    echo $secondCar->getFullName() . PHP_EOL;
-    echo $thirdCar->getNameCar() . ' ' . $thirdCar->getModelCar() . ' ' . $thirdCar->getHorsePower() . PHP_EOL;
 } catch (Exception $error){
 
     echo $error->getMessage();
