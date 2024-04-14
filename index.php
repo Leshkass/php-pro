@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+require_once 'CarMaster/Client.php';
 require_once 'CarMaster/Car.php';
 require_once 'CarMaster/Audi.php';
 require_once 'CarMaster/BMW.php';
@@ -19,10 +20,25 @@ try {
     $firstCar->setColor('Black');
     $firstCar->setYear(2003);
 
+    echo $firstCar->getInfo() . PHP_EOL;
+
+    $newCar = new Client();
+    $newCar->setFirstName('John');
+    $newCar->setSecondName('Wick');
+
+    echo $newCar->getFullName() . PHP_EOL;
+
     $secondCar = new Tires();
     $secondCar->setMarkingTires('A35');
     $secondCar->setSizeTires(19);
-    //echo $firstCar->getInfo();
+    $secondCar->setManufacturerSpare('Italy');
+    $secondCar->setVinCodeSpare(25-36-89);
+
+    echo $secondCar->getFullInfoTies() . PHP_EOL;
+
+
+
+
 
 
 

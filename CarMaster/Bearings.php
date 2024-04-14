@@ -29,5 +29,11 @@ class Bearings extends Spares
         $this->marking = $marking;
     }
 
+    public function getFullInfoBearings(): string
+    {
+        return parent::getManufacturerSpare() . ' ' . parent::getVinCodeSpare() . PHP_EOL
+            . $this->getSize() . ' ' . $this->getMarking();
+    }
+
 
 }

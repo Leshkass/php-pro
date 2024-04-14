@@ -8,6 +8,8 @@ abstract class Car
 
     private string $modelCar;
 
+    private Client $client;
+
     public function getNameCar(): string
     {
         return $this->nameCar;
@@ -28,4 +30,12 @@ abstract class Car
         $this->modelCar = $modelCar;
     }
 
+    public function setClient(Client $client): void
+    {
+        $this->client = $client;
+    }
+    public function getClient(): Client
+    {
+        return $this->client;
+    }
 }

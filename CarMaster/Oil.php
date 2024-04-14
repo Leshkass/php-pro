@@ -29,5 +29,11 @@ class Oil extends Consumables
         $this->brandOil = $brandOil;
     }
 
+    public function getFullInfoOil(): string
+    {
+        return parent::getManufacturer() . ' ' . parent::getQuantity() . PHP_EOL
+            . $this->getBrandOil() . ' ' . $this->getViscosityOil();
+    }
+
 
 }
