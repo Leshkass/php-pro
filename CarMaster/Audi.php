@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 require_once 'Car.php';
+
 class Audi extends Car
 {
     private string $color;

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once 'Audi.php';
+
 class BMW extends Audi
 {
     private int $year;
