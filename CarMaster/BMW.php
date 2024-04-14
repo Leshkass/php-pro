@@ -16,5 +16,9 @@ class BMW extends Audi
     {
         $this->year = $year;
     }
-
+    public function getInfo(): string
+    {
+        return parent::getNameCar() . ' ' . parent::getModelCar() . PHP_EOL
+                . parent::getColor() . ' ' . $this->getYear()  . PHP_EOL;
+    }
 }
