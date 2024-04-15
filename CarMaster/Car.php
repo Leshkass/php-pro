@@ -10,15 +10,16 @@ abstract class Car
 
     private Client $client;
 
+    public function setNameCar(string $nameCar): void
+    {
+        $this->nameCar = $nameCar;
+    }
     public function getNameCar(): string
     {
         return $this->nameCar;
     }
 
-    public function setNameCar(string $nameCar): void
-    {
-        $this->nameCar = $nameCar;
-    }
+
 
     public function getModelCar(): string
     {
@@ -38,4 +39,14 @@ abstract class Car
     {
         return $this->client;
     }
+    public function getFullInfoCar(): array
+    {
+        return [
+            $this->getClient()->getFullName(),
+            $this->getNameCar(),
+            $this->getModelCar()
+        ];
+    }
+
+    abstract protected function Examination(): void;
 }

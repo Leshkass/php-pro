@@ -39,4 +39,9 @@ class Client
         return $this->firstName . ' ' . $this->secondName;
     }
 
+    public function getCars(): array
+    {
+        return $this->cars;
+    }
+
 }

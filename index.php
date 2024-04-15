@@ -13,13 +13,21 @@ try {
     $firstCar->setColor('Black');
     $firstCar->setYear(2003);
 
-    echo $firstCar->getInfo() . PHP_EOL;
+    $secondCar = new Audi();
+
+    //echo $firstCar->getInfo() . PHP_EOL;
 
     $client = new Client();
     $client->setFirstName('John');
     $client->setSecondName('Wick');
+    $client->addCar($firstCar);
+    $client->addCar($secondCar);
 
-    echo $client->getFullName() . PHP_EOL;
+    foreach ($client->getCars() as $car) {
+        echo implode("\n", $car->getFullInfoCar());
+    }
+
+    //echo $client->getFullName() . PHP_EOL;
 
     $tires = new Tires();
     $tires->setMarkingTires('A35');
@@ -27,7 +35,8 @@ try {
     $tires->setManufacturerSpare('Italy');
     $tires->setVinCodeSpare(25-36-89);
 
-    echo $tires->getFullInfoTies() . PHP_EOL;
+
+    //echo $tires->getFullInfoTies() . PHP_EOL;
 
 
 

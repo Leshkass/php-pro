@@ -22,4 +22,11 @@ class BMW extends Audi
         return parent::getNameCar() . ' ' . parent::getModelCar() . PHP_EOL
                 . parent::getColor() . ' ' . $this->getYear()  . PHP_EOL;
     }
+
+    protected function Examination(): void
+    {
+        if ($this->year == '') {
+            throw new Exception('Year of issue must not be empty');
+        }
+    }
 }

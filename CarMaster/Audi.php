@@ -28,4 +28,11 @@ class Audi extends Car
     {
         $this->carBody = $carBody;
     }
+    protected function Examination(): void
+    {
+        if ($this->carBody == '') {
+            throw new Exception('Car body must not be empty');
+        }
+
+    }
 }
