@@ -28,4 +28,12 @@ abstract class Spares
         $this->vinCodeSpare = $vinCodeSpare;
     }
 
+    public function getFullInfoSpares(): array
+    {
+        return [
+            $this->getVinCodeSpare(),
+            $this->getManufacturerSpare()
+        ];
+    }
+
 }

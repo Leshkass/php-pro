@@ -29,9 +29,12 @@ class Tires extends Spares
         $this->sizeTires = $sizeTires;
     }
 
-    public function getFullInfoTies(): string
+    public function getFullInfoSpares(): array
     {
-        return parent::getManufacturerSpare() . ' ' . parent::getVinCodeSpare() . PHP_EOL
-            . $this->getSizeTires() . ' ' . $this->getMarkingTires();
+        $fullInfo = parent::getFullInfoSpares();
+        $fullInfo[] = $this->markingTires;
+        $fullInfo[] = $this->sizeTires;
+
+        return $fullInfo;
     }
 }

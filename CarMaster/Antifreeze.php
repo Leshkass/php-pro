@@ -28,10 +28,14 @@ class Antifreeze extends Consumables
     {
         $this->color = $color;
     }
-
-    public function getFullInfoAntifreeze(): string
+    public function getFullInfoConsumable(): array
     {
-        return parent::getManufacturer() . ' ' . parent::getQuantity() . PHP_EOL
-            . $this->getColor() . ' ' . $this->getTemperature();
+        $fullInfo = parent::getFullInfoConsumable();
+        $fullInfo[] = $this->color;
+        $fullInfo[] = $this->temperature;
+
+        return $fullInfo;
     }
+
+
 }

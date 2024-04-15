@@ -35,4 +35,13 @@ class Audi extends Car
         }
 
     }
+
+    public function getFullInfoCar(): array
+    {
+       $fullInfo =  parent::getFullInfoCar();
+       $fullInfo[] = $this->color;
+       $fullInfo[] = $this->carBody;
+
+       return $fullInfo;
+    }
 }

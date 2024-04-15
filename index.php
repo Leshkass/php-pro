@@ -10,7 +10,6 @@ try {
     $firstCar = new BMW();
     $firstCar->setNameCar('BMW');
     $firstCar->setModelCar('E39');
-    $firstCar->setColor('Black');
     $firstCar->setYear(2003);
 
     $secondCar = new Audi();

@@ -26,4 +26,11 @@ abstract class Consumables
     {
         $this->quantity = $quantity;
     }
+    public function getFullInfoConsumable(): array
+    {
+        return [
+            $this->getManufacturer(),
+            $this->getQuantity()
+        ];
+    }
 }

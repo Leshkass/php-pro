@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-require_once 'Audi.php';
+require_once 'Car.php';
 
-class BMW extends Audi
+
+class BMW extends Car
 {
     private int $year;
 
@@ -17,10 +18,12 @@ class BMW extends Audi
     {
         $this->year = $year;
     }
-    public function getInfo(): string
+    public function getFullInfoCar(): array
     {
-        return parent::getNameCar() . ' ' . parent::getModelCar() . PHP_EOL
-                . parent::getColor() . ' ' . $this->getYear()  . PHP_EOL;
+        $fullInfo = parent::getFullInfoCar();
+        $fullInfo[] = $this->year;
+
+        return $fullInfo;
     }
 
     protected function Examination(): void
