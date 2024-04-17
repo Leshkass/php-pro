@@ -9,6 +9,8 @@ class Client
 {
     private string $firstName;
     private string $surname;
+    private array $cars;
+
     public function addCar(Cars $car): void
     {
         $car->setClient($this);
