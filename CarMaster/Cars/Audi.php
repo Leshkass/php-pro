@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
-require_once 'Car.php';
+namespace CarMaster\Cars;
 
-class Audi extends Car
+class Audi extends Cars
 {
     private string $color;
 

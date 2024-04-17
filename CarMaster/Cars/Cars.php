@@ -2,7 +2,11 @@
 
 declare(strict_types=1);
 
-abstract class Car
+namespace CarMaster\Cars;
+
+use CarMaster\Clients\Client;
+
+abstract class Cars
 {
     private string $nameCar;
 
@@ -18,7 +22,6 @@ abstract class Car
     {
         return $this->nameCar;
     }
-
 
 
     public function getModelCar(): string

@@ -1,7 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
-require_once 'Consumables.php';
+namespace CarMaster\Consumables;
 
 class Oil extends Consumables
 {

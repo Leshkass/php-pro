@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-require_once 'Car.php';
+namespace CarMaster\Cars;
 
-
-class BMW extends Car
+class BMW extends Cars
 {
     private int $year;
 

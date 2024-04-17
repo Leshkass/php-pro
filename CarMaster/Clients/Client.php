@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
+namespace CarMaster\Clients;
+
+use CarMaster\Cars\Cars;
 
 class Client
 {
     private string $firstName;
-    private string $secondName;
-
-    private array $cars;
-
-    public function addCar(Car $car): void
+    private string $surname;
+    public function addCar(Cars $car): void
     {
         $car->setClient($this);
         $this->cars[] = $car;
@@ -25,18 +25,18 @@ class Client
         $this->firstName = $firstName;
     }
 
-    public function getSecondName(): string
+    public function getSurname(): string
     {
-        return $this->secondName;
+        return $this->surname;
     }
 
-    public function setSecondName(string $secondName): void
+    public function setSurname(string $surname): void
     {
-        $this->secondName = $secondName;
+        $this->surname = $surname;
     }
     public function getFullName(): string
     {
-        return $this->firstName . ' ' . $this->secondName;
+        return $this->firstName . ' ' . $this->surname;
     }
 
     public function getCars(): array
