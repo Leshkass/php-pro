@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CarMaster\Consumables;
 
-class Oil extends Consumables
+class Oil extends Consumable
 {
     private string $brandOil;
 

@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace CarMaster\Clients;
 
-use CarMaster\Cars\Cars;
+use CarMaster\Cars\Car;
+use CarMaster\Exceptions\InvalidName;
 
 class Client
 {
@@ -11,25 +12,18 @@ class Client
     private string $surname;
     private array $cars;
 
-    public function addCar(Cars $car): void
+    public function addCar(Car $car): void
     {
         $car->setClient($this);
         $this->cars[] = $car;
     }
 
-    public function getFirstName(): string
-    {
-        return $this->firstName;
-    }
-
     public function setFirstName(string $firstName): void
     {
         $this->firstName = $firstName;
-    }
-
-    public function getSurname(): string
-    {
-        return $this->surname;
+        if(strlen($firstName) <= 2) {
+            throw new InvalidName('First name must be at least 2 characters long');
+        }
     }
 
     public function setSurname(string $surname): void

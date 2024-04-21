@@ -4,10 +4,13 @@ declare(strict_types=1);
 require_once 'autoloader.php';
 
 
+use CarMaster\Exceptions\InvalidSizeTire;
+use CarMaster\Exceptions\InvalidYearCar;
+use CarMaster\Exceptions\InvalidName;
 use CarMaster\Clients\Client;
 use CarMaster\Cars\BMW as MyCar;
 use CarMaster\Cars\Audi;
-use CarMaster\Spares\Tires as SummerTires;
+use CarMaster\Spares\Tire as SummerTires;
 
 
 try {
@@ -15,7 +18,7 @@ try {
     $firstCar = new MyCar();
     $firstCar->setNameCar('BMW');
     $firstCar->setModelCar('E39');
-    $firstCar->setYear(2003);
+    $firstCar->setYear(2005);
 
     $secondCar = new Audi();
     $secondCar->setNameCar('Audi');
@@ -31,29 +34,22 @@ try {
     $client->addCar($firstCar);
     $client->addCar($secondCar);
 
-    foreach ($client->getCars() as $car) {
-        echo implode("\n", $car->getFullInfoCar()) . PHP_EOL;
-    }
+//    foreach ($client->getCars() as $car) {
+//        echo implode("\n", $car->getFullInfoCar()) . PHP_EOL;
+//    }
 
     //echo $client->getFullName() . PHP_EOL;
 
     $tires = new SummerTires();
-    $tires->setMarkingTires('A35');
-    $tires->setSizeTires(19);
+    $tires->setMarkingTire('A35');
+    $tires->setSizeTire(18);
     $tires->setManufacturerSpare('Italy');
     $tires->setVinCodeSpare(25);
 
-    foreach($tires->getFullInfoSpares() as $items){
-        echo $items.PHP_EOL;
-    }
+//    foreach($tires->getFullInfoSpares() as $items){
+//        echo $items.PHP_EOL;
+//    }
 
-
-
-
-
-
-
-} catch (Exception $error){
-
-    echo $error->getMessage();
+} catch (InvalidYearCar|InvalidSizeTire|InvalidName $error){
+    echo $error->getMessage() . PHP_EOL;
 }

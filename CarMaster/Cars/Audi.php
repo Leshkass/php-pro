@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace CarMaster\Cars;
 
-class Audi extends Cars
+use Exception;
+
+class Audi extends Car
 {
     private string $color;
 
@@ -29,13 +31,11 @@ class Audi extends Cars
     {
         $this->carBody = $carBody;
     }
-    protected function Examination(): void
-    {
-        if ($this->carBody == '') {
-            throw new Exception('Car body must not be empty');
-        }
 
-    }
+    /**
+     * @throws Exception
+     */
+
 
     public function getFullInfoCar(): array
     {

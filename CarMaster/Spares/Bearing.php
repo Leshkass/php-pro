@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CarMaster\Spares;
 
-class Bearings extends Spares
+class Bearing extends SparePart
 {
     private float|int $size;
 

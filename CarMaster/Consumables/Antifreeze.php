@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CarMaster\Consumables;
 
-class Antifreeze extends Consumables
+class Antifreeze extends Consumable
 {
     private string $color;
 
