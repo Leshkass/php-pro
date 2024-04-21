@@ -55,5 +55,5 @@ try {
 } catch (InvalidName $error){
     echo $error->getCode() . ' ' . $error->getMessage() .  PHP_EOL;
 } catch (InvalidSizeTire $error){
-    echo $error->getLine() . ' ' . $error->getMessage() . PHP_EOL;
+    echo 'Error: ' . $error->getMessage() . PHP_EOL;
 }
