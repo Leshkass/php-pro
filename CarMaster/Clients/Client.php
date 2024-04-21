@@ -18,6 +18,9 @@ class Client
         $this->cars[] = $car;
     }
 
+    /**
+     * @throws InvalidName
+     */
     public function setFirstName(string $firstName): void
     {
         $this->firstName = $firstName;

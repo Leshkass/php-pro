@@ -16,6 +16,9 @@ class BMW extends Car
         return $this->year;
     }
 
+    /**
+     * @throws InvalidYearCar
+     */
     public function setYear(int $year): void
     {
         $this->year = $year;

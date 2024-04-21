@@ -27,6 +27,9 @@ class Tire extends SparePart
         return $this->sizeTire;
     }
 
+    /**
+     * @throws InvalidSizeTire
+     */
     public function setSizeTire(int $sizeTire): void
     {
         $this->sizeTire = $sizeTire;
