@@ -18,7 +18,7 @@ try {
     $firstCar = new MyCar();
     $firstCar->setNameCar('BMW');
     $firstCar->setModelCar('E39');
-    $firstCar->setYear(2005);
+    $firstCar->setYear(2002);
 
     $secondCar = new Audi();
     $secondCar->setNameCar('Audi');
@@ -42,7 +42,7 @@ try {
 
     $tires = new SummerTires();
     $tires->setMarkingTire('A35');
-    $tires->setSizeTire(18);
+    $tires->setSizeTire(14);
     $tires->setManufacturerSpare('Italy');
     $tires->setVinCodeSpare(25);
 
@@ -50,6 +50,10 @@ try {
 //        echo $items.PHP_EOL;
 //    }
 
-} catch (InvalidYearCar|InvalidSizeTire|InvalidName $error){
+} catch (InvalidYearCar $error){
     echo $error->getMessage() . PHP_EOL;
+} catch (InvalidName $error){
+    echo $error->getCode() . ' ' . $error->getMessage() .  PHP_EOL;
+} catch (InvalidSizeTire $error){
+    echo $error->getLine() . ' ' . $error->getMessage() . PHP_EOL;
 }
