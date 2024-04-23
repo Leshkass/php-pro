@@ -1,7 +1,8 @@
 <?php
 declare(strict_types=1);
 
-require_once 'autoloader.php';
+require __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor/fakerphp/faker/src/autoload.php';
 
 
 use CarMaster\Exceptions\InvalidSizeTire;
@@ -57,3 +58,8 @@ try {
 } catch (InvalidSizeTire $error){
     echo 'Error: ' . $error->getMessage() . PHP_EOL;
 }
+
+$faker = Faker\Factory::create();
+
+echo $faker->name() . PHP_EOL . $faker->year() . PHP_EOL;
+echo $faker->city() . PHP_EOL . $faker->country() . PHP_EOL;

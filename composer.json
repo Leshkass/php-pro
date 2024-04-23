@@ -1,0 +1,22 @@
+{
+  "name": "leshkas/php-pro",
+  "description": "Demo project Garage from PHP Pro course",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Oleksii Smyntyna",
+      "email": "alassstttar@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "CarMaster\\": "CarMaster"
+    }
+  },
+  "require": {
+    "symfony/console": "^7.0",
+    "symfony/filesystem": "^7.0",
+    "fakerphp/faker": "^1.23"
+  }
+}
