@@ -6,7 +6,6 @@ namespace CarMaster\Cars;
 
 use CarMaster\Exceptions\InvalidYearCar;
 
-
 class BMW extends Car
 {
     private int $year;
@@ -24,10 +23,10 @@ class BMW extends Car
         $this->year = $year;
 
         if (($this->year) <= 1980) {
-
-            throw new InvalidYearCar('Year must be  more 1980');
+            throw new InvalidYearCar('Year must be more 1980');
         }
     }
+
     public function getFullInfoCar(): array
     {
         $fullInfo = parent::getFullInfoCar();
@@ -35,5 +34,4 @@ class BMW extends Car
 
         return $fullInfo;
     }
-
 }

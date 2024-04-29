@@ -38,6 +38,4 @@ class Oil extends Consumable
 
         return $fullInfo;
     }
-
-
 }

@@ -38,6 +38,4 @@ class Bearing extends SparePart
 
         return $fullInfo;
     }
-
-
 }

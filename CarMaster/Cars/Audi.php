@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace CarMaster\Cars;
 
-use Exception;
-
 class Audi extends Car
 {
     private string $color;
@@ -32,17 +30,12 @@ class Audi extends Car
         $this->carBody = $carBody;
     }
 
-    /**
-     * @throws Exception
-     */
-
-
     public function getFullInfoCar(): array
     {
-       $fullInfo =  parent::getFullInfoCar();
-       $fullInfo[] = $this->color;
-       $fullInfo[] = $this->carBody;
+        $fullInfo =  parent::getFullInfoCar();
+        $fullInfo[] = $this->color;
+        $fullInfo[] = $this->carBody;
 
-       return $fullInfo;
+        return $fullInfo;
     }
 }

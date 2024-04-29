@@ -18,11 +18,11 @@ abstract class Car
     {
         $this->nameCar = $nameCar;
     }
+
     public function getNameCar(): string
     {
         return $this->nameCar;
     }
-
 
     public function getModelCar(): string
     {
@@ -38,10 +38,12 @@ abstract class Car
     {
         $this->client = $client;
     }
+
     public function getClient(): Client
     {
         return $this->client;
     }
+
     public function getFullInfoCar(): array
     {
         return [
@@ -50,5 +52,4 @@ abstract class Car
             $this->getModelCar()
         ];
     }
-
 }

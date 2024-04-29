@@ -29,6 +29,7 @@ class Antifreeze extends Consumable
     {
         $this->color = $color;
     }
+
     public function getFullInfoConsumable(): array
     {
         $fullInfo = parent::getFullInfoConsumable();
@@ -37,6 +38,4 @@ class Antifreeze extends Consumable
 
         return $fullInfo;
     }
-
-
 }

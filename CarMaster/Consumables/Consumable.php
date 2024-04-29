@@ -29,6 +29,7 @@ abstract class Consumable
     {
         $this->quantity = $quantity;
     }
+
     public function getFullInfoConsumable(): array
     {
         return [
