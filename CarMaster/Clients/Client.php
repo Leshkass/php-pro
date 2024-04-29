@@ -26,10 +26,10 @@ class Client
      */
     public function setFirstName(string $firstName): void
     {
-        $this->firstName = $firstName;
         if (strlen($firstName) <= 2) {
             throw new InvalidName('First name must be at least 2 characters long');
         }
+        $this->firstName = $firstName;
     }
 
     public function setSurname(string $surname): void
