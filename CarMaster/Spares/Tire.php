@@ -32,7 +32,7 @@ class Tire extends SparePart
      */
     public function setSize(int $size): void
     {
-        if (($this->size) < 13) {
+        if ($size < 13) {
             throw new InvalidSizeTire('Size cannot be less than 13');
         }
 

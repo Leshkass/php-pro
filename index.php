@@ -24,19 +24,15 @@ try {
     $secondCar->setColor('black');
     $secondCar->setBodyType('Universal');
 
-    //echo $firstCar->getInfo() . PHP_EOL;
-
     $client = new Client();
     $client->setFirstName('John');
     $client->setSurname('Wick');
     $client->addCar($firstCar);
     $client->addCar($secondCar);
 
-    //    foreach ($client->getCars() as $car) {
-    //        echo implode("\n", $car->getFullInfo()) . PHP_EOL;
-    //    }
-
-    //echo $client->getFullName() . PHP_EOL;
+    foreach ($client->getCars() as $car) {
+        echo implode("\n", $car->getFullInfo()) . PHP_EOL;
+    }
 
     $tires = new SummerTires();
     $tires->setMarking('A35');
