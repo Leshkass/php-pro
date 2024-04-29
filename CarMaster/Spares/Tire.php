@@ -32,11 +32,11 @@ class Tire extends SparePart
      */
     public function setSizeTire(int $sizeTire): void
     {
-        $this->sizeTire = $sizeTire;
-
         if (($this->sizeTire) < 13) {
             throw new InvalidSizeTire('Size cannot be less than 13');
         }
+
+        $this->sizeTire = $sizeTire;
     }
 
     public function getFullInfoSpares(): array
