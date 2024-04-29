@@ -6,38 +6,36 @@ namespace CarMaster\Consumables;
 
 class Oil extends Consumable
 {
-    private string $brandOil;
+    private string $brand;
 
-    private string $viscosityOil;
+    private string $viscosity;
 
-    public function getViscosityOil(): string
+    public function getViscosity(): string
     {
-        return $this->viscosityOil;
+        return $this->viscosity;
     }
 
-    public function setViscosityOil(string $viscosityOil): void
+    public function setViscosity(string $viscosity): void
     {
-        $this->viscosityOil = $viscosityOil;
+        $this->viscosity = $viscosity;
     }
 
     public function getBrandOil(): string
     {
-        return $this->brandOil;
+        return $this->brand;
     }
 
-    public function setBrandOil(string $brandOil): void
+    public function setBrand(string $brand): void
     {
-        $this->brandOil = $brandOil;
+        $this->brand = $brand;
     }
 
-    public function getFullInfoConsumable(): array
+    public function getFullInfo(): array
     {
-        $fullInfo = parent::getFullInfoConsumable();
-        $fullInfo[] = $this->brandOil;
-        $fullInfo[] = $this->viscosityOil;
+        $fullInfo = parent::getFullInfo();
+        $fullInfo[] = $this->brand;
+        $fullInfo[] = $this->viscosity;
 
         return $fullInfo;
     }
-
-
 }

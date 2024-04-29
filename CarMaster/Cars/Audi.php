@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace CarMaster\Cars;
 
-use Exception;
-
 class Audi extends Car
 {
     private string $color;
 
-    private string $carBody;
+    private string $bodyType;
 
     public function getColor(): string
     {
@@ -22,27 +20,22 @@ class Audi extends Car
         $this->color = $color;
     }
 
-    public function getCarBody(): string
+    public function getBodyType(): string
     {
-        return $this->carBody;
+        return $this->bodyType;
     }
 
-    public function setCarBody(string $carBody): void
+    public function setBodyType(string $bodyType): void
     {
-        $this->carBody = $carBody;
+        $this->bodyType = $bodyType;
     }
 
-    /**
-     * @throws Exception
-     */
-
-
-    public function getFullInfoCar(): array
+    public function getFullInfo(): array
     {
-       $fullInfo =  parent::getFullInfoCar();
-       $fullInfo[] = $this->color;
-       $fullInfo[] = $this->carBody;
+        $fullInfo =  parent::getFullInfo();
+        $fullInfo[] = $this->color;
+        $fullInfo[] = $this->bodyType;
 
-       return $fullInfo;
+        return $fullInfo;
     }
 }
