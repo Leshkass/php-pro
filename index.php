@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
-
 
 use CarMaster\Exceptions\InvalidSizeTire;
 use CarMaster\Exceptions\InvalidYearCar;
@@ -12,9 +12,7 @@ use CarMaster\Cars\BMW as MyCar;
 use CarMaster\Cars\Audi;
 use CarMaster\Spares\Tire as SummerTires;
 
-
 try {
-
     $firstCar = new MyCar();
     $firstCar->setNameCar('BMW');
     $firstCar->setModelCar('E39');
@@ -34,9 +32,9 @@ try {
     $client->addCar($firstCar);
     $client->addCar($secondCar);
 
-//    foreach ($client->getCars() as $car) {
-//        echo implode("\n", $car->getFullInfoCar()) . PHP_EOL;
-//    }
+    //    foreach ($client->getCars() as $car) {
+    //        echo implode("\n", $car->getFullInfoCar()) . PHP_EOL;
+    //    }
 
     //echo $client->getFullName() . PHP_EOL;
 
@@ -46,15 +44,13 @@ try {
     $tires->setManufacturerSpare('Italy');
     $tires->setVinCodeSpare(25);
 
-//    foreach($tires->getFullInfoSpares() as $items){
-//        echo $items.PHP_EOL;
-//    }
+    //    foreach($tires->getFullInfoSpares() as $items){
+    //        echo $items.PHP_EOL;
+    //    }
 
-} catch (InvalidYearCar $error){
-    echo $error->getMessage() . PHP_EOL;
-} catch (InvalidName $error){
-    echo $error->getCode() . ' ' . $error->getMessage() .  PHP_EOL;
-} catch (InvalidSizeTire $error){
+} catch (InvalidName $error) {
+    echo 'Error: ' . $error->getCode() . ' ' . $error->getMessage() .  PHP_EOL;
+} catch (InvalidYearCar | InvalidSizeTire $error) {
     echo 'Error: ' . $error->getMessage() . PHP_EOL;
 }
 
