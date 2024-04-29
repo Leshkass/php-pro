@@ -30,9 +30,9 @@ class Bearing extends SparePart
         $this->marking = $marking;
     }
 
-    public function getFullInfoSpares(): array
+    public function getFullInfo(): array
     {
-        $fullInfo = parent::getFullInfoSpares();
+        $fullInfo = parent::getFullInfo();
         $fullInfo[] = $this->marking;
         $fullInfo[] = $this->size;
 

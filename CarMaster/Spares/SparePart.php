@@ -10,31 +10,31 @@ abstract class SparePart
 
     private string $manufacturerSpare;
 
-    public function getManufacturerSpare(): string
+    public function getManufacturer(): string
     {
         return $this->manufacturerSpare;
     }
 
-    public function setManufacturerSpare(string $manufacturerSpares): void
+    public function setManufacturer(string $manufacturerSpares): void
     {
         $this->manufacturerSpare = $manufacturerSpares;
     }
 
-    public function getVinCodeSpare(): int
+    public function getVinCode(): int
     {
         return $this->vinCodeSpare;
     }
 
-    public function setVinCodeSpare(int $vinCodeSpare): void
+    public function setVinCode(int $vinCodeSpare): void
     {
         $this->vinCodeSpare = $vinCodeSpare;
     }
 
-    public function getFullInfoSpares(): array
+    public function getFullInfo(): array
     {
         return [
-            $this->getVinCodeSpare(),
-            $this->getManufacturerSpare()
+            $this->getVinCode(),
+            $this->getManufacturer()
         ];
     }
 }

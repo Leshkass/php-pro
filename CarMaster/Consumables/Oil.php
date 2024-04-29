@@ -30,9 +30,9 @@ class Oil extends Consumable
         $this->brandOil = $brandOil;
     }
 
-    public function getFullInfoConsumable(): array
+    public function getFullInfo(): array
     {
-        $fullInfo = parent::getFullInfoConsumable();
+        $fullInfo = parent::getFullInfo();
         $fullInfo[] = $this->brandOil;
         $fullInfo[] = $this->viscosityOil;
 

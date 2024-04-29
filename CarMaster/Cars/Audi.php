@@ -20,19 +20,19 @@ class Audi extends Car
         $this->color = $color;
     }
 
-    public function getCarBody(): string
+    public function getBodyType(): string
     {
         return $this->carBody;
     }
 
-    public function setCarBody(string $carBody): void
+    public function setBodyType(string $carBody): void
     {
         $this->carBody = $carBody;
     }
 
-    public function getFullInfoCar(): array
+    public function getFullInfo(): array
     {
-        $fullInfo =  parent::getFullInfoCar();
+        $fullInfo =  parent::getFullInfo();
         $fullInfo[] = $this->color;
         $fullInfo[] = $this->carBody;
 

@@ -14,15 +14,15 @@ use CarMaster\Spares\Tire as SummerTires;
 
 try {
     $firstCar = new MyCar();
-    $firstCar->setNameCar('BMW');
-    $firstCar->setModelCar('E39');
+    $firstCar->setBrand('BMW');
+    $firstCar->setModel('E39');
     $firstCar->setYear(2002);
 
     $secondCar = new Audi();
-    $secondCar->setNameCar('Audi');
-    $secondCar->setModelCar('A6');
+    $secondCar->setBrand('Audi');
+    $secondCar->setModel('A6');
     $secondCar->setColor('black');
-    $secondCar->setCarBody('Universal');
+    $secondCar->setBodyType('Universal');
 
     //echo $firstCar->getInfo() . PHP_EOL;
 
@@ -33,19 +33,19 @@ try {
     $client->addCar($secondCar);
 
     //    foreach ($client->getCars() as $car) {
-    //        echo implode("\n", $car->getFullInfoCar()) . PHP_EOL;
+    //        echo implode("\n", $car->getFullInfo()) . PHP_EOL;
     //    }
 
     //echo $client->getFullName() . PHP_EOL;
 
     $tires = new SummerTires();
-    $tires->setMarkingTire('A35');
-    $tires->setSizeTire(14);
-    $tires->setManufacturerSpare('Italy');
-    $tires->setVinCodeSpare(25);
+    $tires->setMarking('A35');
+    $tires->setSize(14);
+    $tires->setManufacturer('Italy');
+    $tires->setVinCode(25);
 
-    //    foreach($tires->getFullInfoSpares() as $items){
-    //        echo $items.PHP_EOL;
+    //    foreach($tires->getFullInfo() as $items){
+    //        echo $items . PHP_EOL;
     //    }
 
 } catch (InvalidName $error) {
@@ -53,8 +53,3 @@ try {
 } catch (InvalidYearCar | InvalidSizeTire $error) {
     echo 'Error: ' . $error->getMessage() . PHP_EOL;
 }
-
-$faker = Faker\Factory::create();
-
-echo $faker->name() . PHP_EOL . $faker->year() . PHP_EOL;
-echo $faker->city() . PHP_EOL . $faker->country() . PHP_EOL;

@@ -14,22 +14,22 @@ abstract class Car
 
     private Client $client;
 
-    public function setNameCar(string $nameCar): void
+    public function setBrand(string $nameCar): void
     {
         $this->nameCar = $nameCar;
     }
 
-    public function getNameCar(): string
+    public function getBrand(): string
     {
         return $this->nameCar;
     }
 
-    public function getModelCar(): string
+    public function getModel(): string
     {
         return $this->modelCar;
     }
 
-    public function setModelCar(string $modelCar): void
+    public function setModel(string $modelCar): void
     {
         $this->modelCar = $modelCar;
     }
@@ -44,12 +44,12 @@ abstract class Car
         return $this->client;
     }
 
-    public function getFullInfoCar(): array
+    public function getFullInfo(): array
     {
         return [
             $this->getClient()->getFullName(),
-            $this->getNameCar(),
-            $this->getModelCar()
+            $this->getBrand(),
+            $this->getModel()
         ];
     }
 }

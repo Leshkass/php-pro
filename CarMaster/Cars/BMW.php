@@ -27,9 +27,9 @@ class BMW extends Car
         $this->year = $year;
     }
 
-    public function getFullInfoCar(): array
+    public function getFullInfo(): array
     {
-        $fullInfo = parent::getFullInfoCar();
+        $fullInfo = parent::getFullInfo();
         $fullInfo[] = $this->year;
 
         return $fullInfo;

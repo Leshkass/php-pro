@@ -12,17 +12,17 @@ class Tire extends SparePart
 
     private string $markingTire;
 
-    public function getMarkingTire(): string
+    public function getMarking(): string
     {
         return $this->markingTire;
     }
 
-    public function setMarkingTire(string $markingTire): void
+    public function setMarking(string $markingTire): void
     {
         $this->markingTire = $markingTire;
     }
 
-    public function getSizeTire(): int
+    public function getSize(): int
     {
         return $this->sizeTire;
     }
@@ -30,7 +30,7 @@ class Tire extends SparePart
     /**
      * @throws InvalidSizeTire
      */
-    public function setSizeTire(int $sizeTire): void
+    public function setSize(int $sizeTire): void
     {
         if (($this->sizeTire) < 13) {
             throw new InvalidSizeTire('Size cannot be less than 13');
@@ -39,9 +39,9 @@ class Tire extends SparePart
         $this->sizeTire = $sizeTire;
     }
 
-    public function getFullInfoSpares(): array
+    public function getFullInfo(): array
     {
-        $fullInfo = parent::getFullInfoSpares();
+        $fullInfo = parent::getFullInfo();
         $fullInfo[] = $this->markingTire;
         $fullInfo[] = $this->sizeTire;
 
