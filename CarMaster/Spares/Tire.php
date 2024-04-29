@@ -8,42 +8,42 @@ use CarMaster\Exceptions\InvalidSizeTire;
 
 class Tire extends SparePart
 {
-    private int $sizeTire;
+    private int $size;
 
-    private string $markingTire;
+    private string $marking;
 
     public function getMarking(): string
     {
-        return $this->markingTire;
+        return $this->marking;
     }
 
-    public function setMarking(string $markingTire): void
+    public function setMarking(string $marking): void
     {
-        $this->markingTire = $markingTire;
+        $this->marking = $marking;
     }
 
     public function getSize(): int
     {
-        return $this->sizeTire;
+        return $this->size;
     }
 
     /**
      * @throws InvalidSizeTire
      */
-    public function setSize(int $sizeTire): void
+    public function setSize(int $size): void
     {
-        if (($this->sizeTire) < 13) {
+        if (($this->size) < 13) {
             throw new InvalidSizeTire('Size cannot be less than 13');
         }
 
-        $this->sizeTire = $sizeTire;
+        $this->size = $size;
     }
 
     public function getFullInfo(): array
     {
         $fullInfo = parent::getFullInfo();
-        $fullInfo[] = $this->markingTire;
-        $fullInfo[] = $this->sizeTire;
+        $fullInfo[] = $this->marking;
+        $fullInfo[] = $this->size;
 
         return $fullInfo;
     }

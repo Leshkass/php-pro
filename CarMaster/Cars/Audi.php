@@ -8,7 +8,7 @@ class Audi extends Car
 {
     private string $color;
 
-    private string $carBody;
+    private string $bodyType;
 
     public function getColor(): string
     {
@@ -22,19 +22,19 @@ class Audi extends Car
 
     public function getBodyType(): string
     {
-        return $this->carBody;
+        return $this->bodyType;
     }
 
-    public function setBodyType(string $carBody): void
+    public function setBodyType(string $bodyType): void
     {
-        $this->carBody = $carBody;
+        $this->bodyType = $bodyType;
     }
 
     public function getFullInfo(): array
     {
         $fullInfo =  parent::getFullInfo();
         $fullInfo[] = $this->color;
-        $fullInfo[] = $this->carBody;
+        $fullInfo[] = $this->bodyType;
 
         return $fullInfo;
     }
