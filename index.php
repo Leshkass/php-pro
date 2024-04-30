@@ -14,9 +14,9 @@ use CarMaster\Spares\Tire as SummerTires;
 
 try {
     $firstCar = new MyCar();
-    $firstCar->setBrand('BMW');
-    $firstCar->setModel('E39');
-    $firstCar->setYear(2002);
+    $firstCar->setBrand('Ford');
+    $firstCar->setModel('Shelby');
+    $firstCar->setYear(1969);
 
     $secondCar = new Audi();
     $secondCar->setBrand('Audi');

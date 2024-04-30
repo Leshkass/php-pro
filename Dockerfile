@@ -3,7 +3,7 @@ FROM php:8.3
 RUN apt-get update && apt-get install -y \
     git \
     zip \
-    unzip
+    unzip \
 
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
