@@ -20,7 +20,7 @@ class BMW extends Car
      */
     public function setYear(int $year): void
     {
-        if ($year <= 1980) {
+        if ($year <= 1950) {
             throw new InvalidYearCar('Year must be more 1980');
         }
 
