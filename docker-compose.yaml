@@ -1,0 +1,30 @@
+services:
+  php:
+    build:
+      dockerfile: ./Dockerfile
+      args:
+        XDEBUG_ENABLED: ${XDEBUG_ENABLED-false}
+    depends_on:
+      - mysql
+    tty: true
+    volumes:
+      - ./:/home/php-pro
+    environment:
+      - PHP_IDE_CONFIG
+      - XDEBUG_CONFIG
+      - DB_HOST
+      - DB_NAME
+      - DB_USER
+      - DB_PASSWORD
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./local/mysql:/var/lib/mysql
