@@ -11,7 +11,7 @@ class Client
 {
     private string $firstName;
 
-    private string $surname;
+    private string $surName;
 
     private array $cars;
 
@@ -32,14 +32,14 @@ class Client
         $this->firstName = $firstName;
     }
 
-    public function setSurname(string $surname): void
+    public function setSurname(string $surName): void
     {
-        $this->surname = $surname;
+        $this->surName = $surName;
     }
 
     public function getFullName(): string
     {
-        return $this->firstName . ' ' . $this->surname;
+        return $this->firstName . ' ' . $this->surName;
     }
 
     public function getCars(): array

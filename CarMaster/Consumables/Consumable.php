@@ -6,18 +6,18 @@ namespace CarMaster\Consumables;
 
 abstract class Consumable
 {
-    private string $manufacturer;
+    private string $countryManufacturer;
 
     private int $quantity;
 
     public function getManufacturer(): string
     {
-        return $this->manufacturer;
+        return $this->countryManufacturer;
     }
 
-    public function setManufacturer(string $manufacturer): void
+    public function setManufacturer(string $countryManufacturer): void
     {
-        $this->manufacturer = $manufacturer;
+        $this->countryManufacturer = $countryManufacturer;
     }
 
     public function getQuantity(): int
