@@ -11,7 +11,17 @@ create table client
     client_id int unsigned not null
 );
 
-alter table client add  foreign key (client_id) references cars(id);
+create table cars_client
+(
+    client_id int unsigned not null,
+    cars_id int unsigned not null,
+    primary key (client_id,cars_id),
+    constraint cars_client_ibfk_1 foreign key (client_id)  references client(id),
+    constraint cars_client_ibfk_2 foreign key (cars_id) references cars(id)
+);
+
+
+
 
 create table consumable
 (
@@ -24,7 +34,14 @@ create table consumable
     consumable_id int unsigned not null
 );
 
-alter table consumable add foreign key (consumable_id) references cars (id);
+create table cars_consumable
+(
+    cars_id int unsigned not null,
+    consumable_id int unsigned not null,
+    primary key (cars_id,  consumable_id),
+    constraint cars_consumable_ibfk_1 foreign key (consumable_id)  references consumable(id),
+    constraint cars_consumable_ibfk_2 foreign key (cars_id)  references cars(id)
+);
 
 create table spares
 (
@@ -36,7 +53,15 @@ create table spares
     spares_id int unsigned not null
 );
 
-alter table spares add foreign key (spares_id) references cars (id);
+create table cars_spares
+(
+    cars_id int unsigned not null,
+    spares_id int unsigned not null,
+    primary key (cars_id,  spares_id),
+    constraint cars_spares_ibfk_1 foreign key (spares_id)  references spares(id),
+    constraint cars_spares_ibfk_2 foreign key (cars_id)  references cars(id)
+
+);
 
 create table cars
 (
@@ -49,4 +74,5 @@ create table cars
     cars_id int unsigned not null
 );
 
-alter table cars add foreign key (cars_id) references client(id);
+
+
