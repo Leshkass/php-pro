@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
+require_once 'Repository/CarsRepository.php';
 
 use CarMaster\Exceptions\InvalidSizeTire;
 use CarMaster\Exceptions\InvalidYearCar;
@@ -12,40 +13,64 @@ use CarMaster\Cars\BMW as MyCar;
 use CarMaster\Cars\Audi;
 use CarMaster\Spares\Tire as SummerTires;
 
+const DB_HOST = 'mysql';
+const DB_PORT = '3306';
+const DB_NAME = 'garage_db';
+const DB_CHARSET = 'utf8mb4';
+const DB_USER = 'oleksii';
+const DB_PASSWORD = '1q2w3e4r5t6y7u';
+
 try {
+
+    $dsn = 'mysql:host='. DB_HOST .';port='. DB_PORT .';dbname='. DB_NAME .';charset='. DB_CHARSET ;
+
+    $connect = new PDO($dsn,DB_USER,DB_PASSWORD);
+
+     echo 'Connect' . PHP_EOL;
+
     $firstCar = new MyCar();
-    $firstCar->setBrand('Ford');
-    $firstCar->setModel('Shelby');
-    $firstCar->setYear(1969);
 
-    $secondCar = new Audi();
-    $secondCar->setBrand('Audi');
-    $secondCar->setModel('A6');
-    $secondCar->setColor('black');
-    $secondCar->setBodyType('Universal');
+    $firstCar->setNameCar('audi');
+    $firstCar->setModel('A6');
+    $firstCar->setYear(2002);
 
-    $client = new Client();
-    $client->setFirstName('John');
-    $client->setSurname('Wick');
-    $client->addCar($firstCar);
-    $client->addCar($secondCar);
+    $dbCar = new \Repository\CarsRepository($connect);
 
-    foreach ($client->getCars() as $car) {
-        echo implode("\n", $car->getFullInfo()) . PHP_EOL;
-    }
+//    $dbCar->add([
+//        'name' => $firstCar->getNameCar(),
+//        'model' => $firstCar->getModel(),
+//        'year' => $firstCar->getYear(),
+//        'color' => 'black',
+//        'body_type' => 'sedan',
+//        'cars_id' => 45
+//    ]);
+//    $dbCar->findByID(['cars_id' => 88]);
 
-    $tires = new SummerTires();
-    $tires->setMarking('A35');
-    $tires->setSize(14);
-    $tires->setManufacturer('Italy');
-    $tires->setVinCode(25);
+//    $dbCar->delete([
+//        'cars_id' => 23
+//    ]);
 
-    //    foreach($tires->getFullInfo() as $items){
-    //        echo $items . PHP_EOL;
-    //    }
+//    $dbCar->update([
+//        'name' => $firstCar->getNameCar(),
+//        'model' => $firstCar->getModel(),
+//        'cars_id' => 88
+//    ]);
 
-} catch (InvalidName $error) {
-    echo 'Error: ' . $error->getCode() . ' ' . $error->getMessage() .  PHP_EOL;
-} catch (InvalidYearCar | InvalidSizeTire $error) {
-    echo 'Error: ' . $error->getMessage() . PHP_EOL;
+} catch (PDOException | InvalidYearCar $exception){
+
+    echo $exception->getFile() . PHP_EOL;
+    echo $exception->getLine() . PHP_EOL;
+    echo $exception->getCode() . PHP_EOL;
+    echo 'Disconnect' . PHP_EOL;
 }
+
+
+
+
+
+
+
+
+
+
+
