@@ -27,21 +27,22 @@ try {
     $connect = new PDO($dsn,DB_USER,DB_PASSWORD);
 
      echo 'Connect' . PHP_EOL;
+     echo 'Done' . PHP_EOL;
 
     $firstCar = new MyCar();
 
     $firstCar->setNameCar('Ford');
     $firstCar->setModel('Lancer-X10');
     $firstCar->setYear(2023);
-    $firstCar->setCarsId(89);
+    $firstCar->setCarsId(18);
 
     $dbCar = new \Repository\CarsRepository($connect);
 
     //$dbCar->add($firstCar);
 
-    $dbCar->findByID($firstCar);
+//    $dbCar->findByID($firstCar);
 
-//    $dbCar->delete($firstCar);
+    $dbCar->delete($firstCar);
 
 
 //   $dbCar->update($firstCar);
