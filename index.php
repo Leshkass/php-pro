@@ -30,31 +30,21 @@ try {
 
     $firstCar = new MyCar();
 
-    $firstCar->setNameCar('audi');
-    $firstCar->setModel('A6');
-    $firstCar->setYear(2002);
+    $firstCar->setNameCar('Ford');
+    $firstCar->setModel('Lancer-X10');
+    $firstCar->setYear(2023);
+    $firstCar->setCarsId(89);
 
     $dbCar = new \Repository\CarsRepository($connect);
 
-//    $dbCar->add([
-//        'name' => $firstCar->getNameCar(),
-//        'model' => $firstCar->getModel(),
-//        'year' => $firstCar->getYear(),
-//        'color' => 'black',
-//        'body_type' => 'sedan',
-//        'cars_id' => 45
-//    ]);
-//    $dbCar->findByID(['cars_id' => 88]);
+    //$dbCar->add($firstCar);
 
-//    $dbCar->delete([
-//        'cars_id' => 23
-//    ]);
+    $dbCar->findByID($firstCar);
 
-//    $dbCar->update([
-//        'name' => $firstCar->getNameCar(),
-//        'model' => $firstCar->getModel(),
-//        'cars_id' => 88
-//    ]);
+//    $dbCar->delete($firstCar);
+
+
+//   $dbCar->update($firstCar);
 
 } catch (PDOException | InvalidYearCar $exception){
 

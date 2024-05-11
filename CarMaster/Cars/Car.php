@@ -14,6 +14,8 @@ abstract class Car
 
     private Client $client;
 
+    private int $cars_id;
+
     public function setNameCar(string $nameCar): void
     {
         $this->nameCar = $nameCar;
@@ -51,5 +53,15 @@ abstract class Car
             $this->getNameCar(),
             $this->getModel()
         ];
+    }
+
+    public function getCarsId(): int
+    {
+        return $this->cars_id;
+    }
+
+    public function setCarsId(int $cars_id): void
+    {
+        $this->cars_id = $cars_id;
     }
 }

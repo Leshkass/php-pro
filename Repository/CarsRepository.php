@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Repository;
 
-use CarMaster\Cars\Car;
+use CarMaster\Cars\BMW;
 use PDO;
 readonly class CarsRepository
 {
@@ -15,46 +15,45 @@ readonly class CarsRepository
     }
 
 
-    public function add(array $data): void
+    public function add(BMW $car): void
     {
         $statement = $this->pdo->prepare(
-          'INSERT INTO cars (name, model, year, color, body_type, cars_id)
-                    VALUES (:name, :model, :year, :color, :body_type, :cars_id)'
+          'INSERT INTO cars (name, model,year,cars_id)
+                    VALUES (:name, :model, :year,:cars_id)'
         );
 
+
         $statement->execute([
-            ':name' => $data['name'],
-            ':model' => $data['model'],
-            ':year' => $data['year'],
-            ':color' => $data['color'],
-            ':body_type' => $data['body_type'],
-            ':cars_id' => $data['cars_id']
+            ':name' => $car->getNameCar(),
+            ':model' => $car->getModel(),
+            'year' => $car->getYear(),
+            ':cars_id' => $car->getCarsId()
         ]);
     }
 
-    public function delete(array $data): void
+    public function delete(BMW $car): void
     {
         $statement = $this->pdo->prepare('DELETE FROM cars WHERE cars_id = :cars_id');
         $statement->execute([
-           ':cars_id' => $data['cars_id']
+           ':cars_id' => $car->getCarsId()
         ]);
     }
 
-    public function update(array $data): void
+    public function update(BMW $car): void
     {
         $statement = $this->pdo->prepare('UPDATE cars SET name = :name , model = :model WHERE cars_id = :cars_id');
         $statement->execute([
-           ':name' => $data['name'],
-           ':model' => $data['model'],
-           ':cars_id' => $data['cars_id']
+           ':name' => $car->getNameCar(),
+           ':model' => $car->getModel(),
+           ':cars_id' => $car->getCarsId()
         ]);
     }
 
-    public function findByID(array $data): void
+    public function findByID(BMW $car): void
     {
         $statement = $this->pdo->prepare('SELECT * FROM cars WHERE cars_id = :cars_id');
         $statement->execute([
-            ':cars_id' => $data['cars_id']
+            ':cars_id' => $car->getCarsId()
         ]);
 
         $foundCars = $statement->fetch(PDO::FETCH_ASSOC);
