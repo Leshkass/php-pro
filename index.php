@@ -44,7 +44,6 @@ try {
 
     $dbCar->delete($firstCar);
 
-
 //   $dbCar->update($firstCar);
 
 } catch (PDOException | InvalidYearCar $exception){
