@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Repository;
 
+use CarMaster\Cars\Car;
 use CarMaster\Cars\BMW;
+use CarMaster\Cars\Audi;
 use PDO;
 readonly class CarsRepository
 {
@@ -15,11 +17,11 @@ readonly class CarsRepository
     }
 
 
-    public function add(BMW $car): void
+    public function add(Car|BMW|Audi $car): void
     {
         $statement = $this->pdo->prepare(
-          'INSERT INTO cars (name, model,year,cars_id)
-                    VALUES (:name, :model, :year,:cars_id)'
+          'INSERT INTO cars (name, model,year,color, body_type,cars_id)
+                    VALUES (:name, :model, :year, :color, :body_type,:cars_id)'
         );
 
 
@@ -27,11 +29,13 @@ readonly class CarsRepository
             ':name' => $car->getNameCar(),
             ':model' => $car->getModel(),
             'year' => $car->getYear(),
+            ':color' => $car->getColor(),
+            ':body_type' => $car->getBodyType(),
             ':cars_id' => $car->getCarsId()
         ]);
     }
 
-    public function delete(BMW $car): void
+    public function delete(Car|BMW|Audi $car): void
     {
         $statement = $this->pdo->prepare('DELETE FROM cars WHERE cars_id = :cars_id');
         $statement->execute([
@@ -39,7 +43,7 @@ readonly class CarsRepository
         ]);
     }
 
-    public function update(BMW $car): void
+    public function update(Car|BMW|Audi $car): void
     {
         $statement = $this->pdo->prepare('UPDATE cars SET name = :name , model = :model WHERE cars_id = :cars_id');
         $statement->execute([
@@ -49,7 +53,7 @@ readonly class CarsRepository
         ]);
     }
 
-    public function findByID(BMW $car): void
+    public function findByID(Car|BMW|Audi $car): void
     {
         $statement = $this->pdo->prepare('SELECT * FROM cars WHERE cars_id = :cars_id');
         $statement->execute([
