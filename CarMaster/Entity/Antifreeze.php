@@ -1,13 +1,17 @@
 <?php
-
 declare(strict_types=1);
 
-namespace CarMaster\Consumables;
+namespace CarMaster\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
 class Antifreeze extends Consumable
 {
+    #[ORM\Column(name: 'color', type: 'string')]
     private string $color;
 
+    #[ORM\Column(name: 'temperature', type: 'float')]
     private float $temperature;
 
     public function getTemperature(): float
@@ -28,14 +32,5 @@ class Antifreeze extends Consumable
     public function setColor(string $color): void
     {
         $this->color = $color;
-    }
-
-    public function getFullInfo(): array
-    {
-        $fullInfo = parent::getFullInfo();
-        $fullInfo[] = $this->color;
-        $fullInfo[] = $this->temperature;
-
-        return $fullInfo;
     }
 }
