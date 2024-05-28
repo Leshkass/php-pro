@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Repository;
+namespace CarMaster\Repository;
 
-use CarMaster\Cars\BMW;
+
+use CarMaster\Entity\Car;
 use PDO;
+
 readonly class CarsRepository
 {
 
@@ -14,24 +16,24 @@ readonly class CarsRepository
 
     }
 
-
-    public function add(BMW $car): void
+    public function add(Car $car): void
     {
         $statement = $this->pdo->prepare(
-          'INSERT INTO cars (name, model,year,cars_id)
-                    VALUES (:name, :model, :year,:cars_id)'
+          'INSERT INTO cars (name, model,year,color, body_type)
+                    VALUES (:name, :model, :year, :color, :body_type)'
         );
 
 
         $statement->execute([
-            ':name' => $car->getNameCar(),
+            ':name' => $car->getBrand(),
             ':model' => $car->getModel(),
             'year' => $car->getYear(),
-            ':cars_id' => $car->getCarsId()
+            ':color' => $car->getColor(),
+            ':body_type' => $car->getBodyType()
         ]);
     }
 
-    public function delete(BMW $car): void
+    public function delete(Car $car): void
     {
         $statement = $this->pdo->prepare('DELETE FROM cars WHERE cars_id = :cars_id');
         $statement->execute([
@@ -39,17 +41,16 @@ readonly class CarsRepository
         ]);
     }
 
-    public function update(BMW $car): void
+    public function update(Car $car): void
     {
-        $statement = $this->pdo->prepare('UPDATE cars SET name = :name , model = :model WHERE cars_id = :cars_id');
+        $statement = $this->pdo->prepare('UPDATE cars SET name = :name , model = :model WHERE id = :id');
         $statement->execute([
-           ':name' => $car->getNameCar(),
-           ':model' => $car->getModel(),
-           ':cars_id' => $car->getCarsId()
+           ':name' => $car->getBrand(),
+           ':model' => $car->getModel()
         ]);
     }
 
-    public function findByID(BMW $car): void
+    public function findByID(Car $car): void
     {
         $statement = $this->pdo->prepare('SELECT * FROM cars WHERE cars_id = :cars_id');
         $statement->execute([
