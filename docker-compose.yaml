@@ -1,7 +1,7 @@
 services:
   php:
     build:
-      dockerfile: ./Dockerfile
+      dockerfile: docker/Dockerfile
     depends_on:
       - mysql
     tty: true
@@ -15,6 +15,18 @@ services:
       - DB_NAME
       - DB_USER
       - DB_PASSWORD
+
+  nginx:
+      build:
+          context: ./docker
+          target: nginx-dev
+      depends_on:
+          - php
+      ports:
+          - "80:80"
+      volumes:
+        - ./:/home/php-pro
+
 
   mysql:
     image: mysql:latest

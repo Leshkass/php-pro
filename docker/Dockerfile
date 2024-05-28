@@ -1,4 +1,12 @@
-FROM php:8.3
+FROM nginx:1.26 as nginx-dev
+
+COPY nginx/default.conf /etc/nginx/conf.d/
+
+CMD ["nginx", "-g", "daemon off;"]
+
+
+FROM php:8.3-fpm as php-dev
+
 WORKDIR /home/php-pro
 
 RUN apt-get update && apt-get install -y \
