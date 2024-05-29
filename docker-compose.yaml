@@ -1,7 +1,8 @@
 services:
   php:
     build:
-      dockerfile: docker/Dockerfile
+      context: ./docker
+      target: php-dev
     depends_on:
       - mysql
     tty: true
