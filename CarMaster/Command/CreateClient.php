@@ -38,12 +38,7 @@ class CreateClient extends Command
         $entityManager->persist($client);
         $entityManager->flush();
 
-//        $styledOutput = new SymfonyStyle($input, $output);
-//        $service = new Service();
-//        $entity = $service->createORMEntityManager();
-//        $queryBuilder = $entity->getRepository(Client::class)->createQueryBuilder('c');
-//        $queryBuilder->orderBy('c.sur_name', 'ASC');
-//        $styledOutput->info($queryBuilder->getQuery()->getSQL());
+
 
         return Command::SUCCESS;
     }
