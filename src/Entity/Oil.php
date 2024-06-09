@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace CarMaster\Entity;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace CarMaster\Command;
+namespace App\Command;
 
-use CarMaster\Entity\Client;
+use App\Entity\Client;
 use CarMaster\Service;
 use Faker\Factory;
 use Symfony\Component\Console\Attribute\AsCommand;

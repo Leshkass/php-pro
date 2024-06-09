@@ -1,15 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace CarMaster\Entity;
+namespace App\Entity;
 
-use CarMaster\Exceptions\InvalidName;
+use App\Entity\Exceptions\InvalidName;
+use App\Repository\ClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: ClientRepository::class)]
 #[ORM\Table(name: 'client')]
 class Client
 {
@@ -80,5 +81,13 @@ class Client
     public function setEmail(string $email): void
     {
         $this->email = $email;
+    }
+
+    public function getFullInfo(): array
+    {
+        return [
+            'Full name' => $this->getFullName(),
+            'Email' => $this->getEmail()
+        ];
     }
 }

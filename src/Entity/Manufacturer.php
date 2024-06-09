@@ -1,9 +1,8 @@
 <?php
 declare(strict_types=1);
 
-namespace CarMaster\Entity;
+namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 

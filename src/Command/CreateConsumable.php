@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace CarMaster\Command;
+namespace App\Command;
 
-use CarMaster\Entity\Antifreeze;
-use CarMaster\Entity\Enum\Unit;
-use CarMaster\Entity\Manufacturer;
-use CarMaster\Entity\Oil;
+use App\Entity\Antifreeze;
+use App\Entity\Enum\Unit;
+use App\Entity\Manufacturer;
+use App\Entity\Oil;
 use CarMaster\Service;
 use Faker\Factory;
 use Symfony\Component\Console\Attribute\AsCommand;

@@ -1,15 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace CarMaster\Entity;
+namespace App\Entity;
 
-use CarMaster\Entity\Enum\BodyType;
+use App\Entity\Enum\BodyType;
+use App\Repository\CarRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: CarRepository::class)]
 #[ORM\Table(name: 'car')]
 class Car
 {
@@ -102,6 +103,19 @@ class Car
     public function setBodyType(?BodyType $bodyType): void
     {
         $this->bodyType = $bodyType;
+    }
+
+    public function getFullInfo(): array
+    {
+        return [
+            'Brand' => $this->getBrand(),
+            'Model' => $this->getModel(),
+            'Year' => $this->getYear(),
+            'Color' => $this->getColor(),
+            'BodyType' => $this->getBodyType()
+
+        ];
+
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace CarMaster\Exceptions;
+namespace App\Entity\Exceptions;
 
 use Exception;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace CarMaster\Entity\Enum;
+namespace App\Entity\Enum;
 
 enum BodyType: string
 {

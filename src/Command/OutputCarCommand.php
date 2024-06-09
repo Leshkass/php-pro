@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace CarMaster\Command;
+namespace App\Command;
 
-use CarMaster\Entity\Car;
-use CarMaster\Entity\Client;
+use App\Entity\Car;
+use App\Entity\Client;
 use CarMaster\Service;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;

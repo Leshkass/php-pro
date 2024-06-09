@@ -1,10 +1,10 @@
 <?php
 
-namespace CarMaster\Command;
+namespace App\Command;
 
-use CarMaster\Entity\Category;
-use CarMaster\Entity\Manufacturer;
-use CarMaster\Entity\Spares;
+use App\Entity\Category;
+use App\Entity\Manufacturer;
+use App\Entity\Spares;
 use CarMaster\Service;
 use Faker\Factory;
 use Symfony\Component\Console\Attribute\AsCommand;
