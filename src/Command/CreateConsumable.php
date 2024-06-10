@@ -7,8 +7,8 @@ use App\Entity\Antifreeze;
 use App\Entity\Enum\Unit;
 use App\Entity\Manufacturer;
 use App\Entity\Oil;
-use CarMaster\Service;
-use Faker\Factory;
+use Doctrine\ORM\EntityManagerInterface;
+use Faker\Generator;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -18,6 +18,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'create:consumable')]
 class CreateConsumable extends Command
 {
+    public function __construct(private readonly EntityManagerInterface $entityManager,
+    private readonly Generator $faker)
+    {
+        parent::__construct();
+    }
+
     private const CONSUMABLE_TYPE_ANTIFREEZE = 'antifreeze';
     private const CONSUMABLE_TYPE_OIL = 'oil';
 
@@ -29,39 +35,34 @@ class CreateConsumable extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $faker = Factory::create();
-
-
-        $services = new Service();
-        $entityManager = $services->createORMEntityManager();
 
         $brand = new Manufacturer();
-        $brand->setName($faker->name);
-        $entityManager->persist($brand);
-        $entityManager->flush();
+        $brand->setName($this->faker->name);
+        $this->entityManager->persist($brand);
+        $this->entityManager->flush();
 
         switch ($input->getArgument('consumableType')) {
             case self::CONSUMABLE_TYPE_ANTIFREEZE:
                 $consumable = new Antifreeze();
-                $consumable->setColor($faker->colorName);
-                $consumable->setTemperature($faker->randomNumber());
+                $consumable->setColor($this->faker->colorName);
+                $consumable->setTemperature($this->faker->randomNumber());
                 break;
 
             case self::CONSUMABLE_TYPE_OIL:
                 $consumable = new Oil();
-                $consumable->setViscosity($faker->text(20));
+                $consumable->setViscosity($this->faker->text(20));
                 break;
 
             default:
                 throw new \Exception('Bad consumable type');
         }
         $consumable->setManufacturer($brand);
-        $consumable->setName($faker->name);
-        $consumable->setQuantity($faker->randomNumber());
+        $consumable->setName($this->faker->name);
+        $consumable->setQuantity($this->faker->randomNumber());
         $consumable->setUnit(Unit::Liter);
 
-        $entityManager->persist($consumable);
-        $entityManager->flush();
+        $this->entityManager->persist($consumable);
+        $this->entityManager->flush();
 
         return Command::SUCCESS;
     }

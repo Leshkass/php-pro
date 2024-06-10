@@ -5,7 +5,7 @@ namespace App\Command;
 
 use App\Entity\Car;
 use App\Entity\Client;
-use CarMaster\Service;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -15,6 +15,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'output:car')]
 class OutputCarCommand extends Command
 {
+    public function __construct(private readonly EntityManagerInterface $entityManager)
+    {
+        parent::__construct();
+    }
     protected function configure(): void
     {
         $this->addArgument('id', InputArgument::REQUIRED);
@@ -23,13 +27,9 @@ class OutputCarCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $services = new Service();
-        $entityManager = $services->createORMEntityManager();
 
-        $repo = $entityManager->getRepository(Car::class);
-        $queryBuilder = $repo->createQueryBuilder('c');
-
-        $queryBuilder
+        $queryBuilder = $this->entityManager->getRepository(Car::class)
+            ->createQueryBuilder('c')
             ->where('c.id = :id')
             ->setParameter('id', ($input->getArgument('id')));
 

@@ -6,7 +6,7 @@ namespace App\Command;
 
 use App\Entity\Car;
 use App\Entity\Enum\BodyType;
-use CarMaster\Service;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -16,6 +16,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'create:car')]
 class CreateCar extends Command
 {
+
+    public function __construct(private readonly EntityManagerInterface $entityManager)
+    {
+        parent::__construct();
+    }
+
     protected function configure(): void
     {
         $this->addArgument('brand', InputArgument::REQUIRED, 'Car brand, for example Audi or BWM')
@@ -28,8 +34,6 @@ class CreateCar extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $services = new Service();
-
         $firstCar = new Car();
         $firstCar->setBrand($input->getArgument('brand'));
         $firstCar->setModel($input->getArgument('model'));
@@ -37,9 +41,9 @@ class CreateCar extends Command
         $firstCar->setColor($input->getArgument('color'));
         $firstCar->setBodyType(BodyType::tryFrom((string) $input->getArgument('bodyType')));
 
-        $entityManager = $services->createORMEntityManager();
-        $entityManager->persist($firstCar);
-        $entityManager->flush();
+
+        $this->entityManager->persist($firstCar);
+        $this->entityManager->flush();
 
         return Command::SUCCESS;
     }
