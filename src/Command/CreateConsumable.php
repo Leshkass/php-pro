@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Command;
 
 use App\Entity\Antifreeze;
+use App\Entity\Enum\ColorAntifreeze;
 use App\Entity\Enum\Unit;
 use App\Entity\Manufacturer;
 use App\Entity\Oil;
@@ -29,7 +30,14 @@ class CreateConsumable extends Command
 
     protected function configure(): void
     {
-        $this->addArgument('consumableType', InputArgument::REQUIRED);
+        $this
+            ->addArgument('consumableType', InputArgument::REQUIRED)
+            ->addArgument('colorConsumable', InputArgument::REQUIRED)
+            ->addArgument('temperature', InputArgument::REQUIRED)
+            ->addArgument('viscosity', InputArgument::REQUIRED)
+            ->addArgument('nameConsumable', InputArgument::REQUIRED)
+            ->addArgument('quantity', InputArgument::REQUIRED)
+            ->addArgument('price', InputArgument::REQUIRED);
     }
 
 
@@ -37,29 +45,30 @@ class CreateConsumable extends Command
     {
 
         $brand = new Manufacturer();
-        $brand->setName($this->faker->name);
+        $brand->setName($this->faker->country());
         $this->entityManager->persist($brand);
         $this->entityManager->flush();
 
         switch ($input->getArgument('consumableType')) {
             case self::CONSUMABLE_TYPE_ANTIFREEZE:
                 $consumable = new Antifreeze();
-                $consumable->setColor($this->faker->colorName);
-                $consumable->setTemperature($this->faker->randomNumber());
+                $consumable->setColor(ColorAntifreeze::tryFrom((string)$input->getArgument('colorConsumable')));
+                $consumable->setTemperature((int)$input->getArgument('temperature'));
                 break;
 
             case self::CONSUMABLE_TYPE_OIL:
                 $consumable = new Oil();
-                $consumable->setViscosity($this->faker->text(20));
+                $consumable->setViscosity($input->getArgument('viscosity'));
                 break;
 
             default:
                 throw new \Exception('Bad consumable type');
         }
         $consumable->setManufacturer($brand);
-        $consumable->setName($this->faker->name);
-        $consumable->setQuantity($this->faker->randomNumber());
+        $consumable->setName($input->getArgument('nameConsumable'));
+        $consumable->setQuantity((int)$input->getArgument('quantity'));
         $consumable->setUnit(Unit::Liter);
+        $consumable->setPrice((int)$input->getArgument('price'));
 
         $this->entityManager->persist($consumable);
         $this->entityManager->flush();

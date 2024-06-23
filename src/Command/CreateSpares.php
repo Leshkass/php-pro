@@ -4,7 +4,7 @@ namespace App\Command;
 
 use App\Entity\Category;
 use App\Entity\Manufacturer;
-use App\Entity\Spares;
+use App\Entity\Spare;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Faker\Generator;
@@ -26,6 +26,7 @@ class CreateSpares extends Command
     protected function configure(): void
     {
         $this
+            ->addArgument('category', InputArgument::REQUIRED, 'category name')
             ->addArgument('name', InputArgument::REQUIRED, 'name spare part')
             ->addArgument('ean_number', InputArgument::REQUIRED, 'ean-number spare part');
     }
@@ -35,19 +36,20 @@ class CreateSpares extends Command
 
 
         $category = new Category();
-        $category->setName($this->faker->firstName);
+        $category->setName($input->getArgument('category'));
         $this->entityManager->persist($category);
         $this->entityManager->flush();
 
         $brand = new Manufacturer();
-        $brand->setName($this->faker->country);
+        $brand->setName($this->faker->country());
         $this->entityManager->persist($brand);
         $this->entityManager->flush();
 
-        $tire = new Spares();
+        $tire = new Spare();
 
         $tire->setName($input->getArgument('name'));
         $tire->setEanNumber($input->getArgument('ean_number'));
+        $tire->setPrice($this->faker->randomNumber());
         $tire->setCategory($category);
         $tire->setManufacturer($brand);
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Enum\BodyType;
+use App\Entity\Interface\CarInterface;
 use App\Repository\CarRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
 #[ORM\Table(name: 'car')]
-class Car
+class Car implements CarInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -34,12 +35,17 @@ class Car
     #[ORM\Column(name: 'body_type', nullable: true, enumType: BodyType::class)]
     private ?BodyType $bodyType;
 
+    #[ORM\OneToMany(targetEntity: Order::class,mappedBy: 'car')]
+    private Collection $orders;
+
+
     #[ORM\ManyToMany(targetEntity: Client::class, mappedBy: 'cars')]
     private Collection $clients;
 
     public function __construct()
     {
         $this->clients = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     public function addClient(Client $client): void
@@ -116,6 +122,22 @@ class Car
 
         ];
 
+    }
+
+    public function getOrder(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): void
+    {
+        if(!$this->orders->contains($order)) {
+            $this->orders->add($order);
+        }
+    }
+    public function getFullName(): string
+    {
+        return $this->brand . '  ' . $this->model . '  ' . $this->year;
     }
 
 }

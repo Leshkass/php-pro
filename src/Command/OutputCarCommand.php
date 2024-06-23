@@ -44,7 +44,7 @@ class OutputCarCommand extends Command
             echo $item->getBodyType()->value . PHP_EOL;
             $clients = $item->getClients();
 
-            /** @var Client $clients */
+            /** @var Client $client */
             
             foreach ($clients as $client){
                 echo $client->getFullName() . PHP_EOL;

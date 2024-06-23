@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace App\Entity;
@@ -9,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'spares')]
-class Spares
+class Spare
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -30,6 +29,8 @@ class Spares
     #[ORM\Column(name: 'ean_number',type: 'integer')]
     private int $eanNumber;
 
+    #[ORM\Column(name: 'price', type: 'integer')]
+    private int $price;
 
     public function getCategory(): Category
     {
@@ -71,4 +72,13 @@ class Spares
         $this->eanNumber = $eanNumber;
     }
 
+    public function getPrice(): int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): void
+    {
+        $this->price = $price;
+    }
 }

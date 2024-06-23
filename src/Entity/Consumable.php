@@ -28,6 +28,9 @@ abstract class Consumable
     #[ORM\Column(name: 'unit', enumType: Unit::class)]
     private Unit $unit;
 
+    #[ORM\Column(name: 'price',type: 'integer')]
+    private int $price;
+
     #[ORM\JoinColumn(name: 'manufacturer_id')]
     #[ORM\ManyToOne(targetEntity: Manufacturer::class, inversedBy: 'consumables')]
     private Manufacturer $manufacturer;
@@ -70,5 +73,15 @@ abstract class Consumable
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getPrice(): int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): void
+    {
+        $this->price = $price;
     }
 }

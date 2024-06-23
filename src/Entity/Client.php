@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Exceptions\InvalidName;
+use App\Entity\Interface\ClientInterface;
 use App\Repository\ClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 #[ORM\Table(name: 'client')]
-class Client
+class Client implements ClientInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -28,6 +29,9 @@ class Client
     #[ORM\Column(name: 'email', type: 'string', length: 150)]
     private string $email;
 
+    #[ORM\OneToMany(targetEntity: Order::class,mappedBy: 'client')]
+    private Collection $orders;
+
     #[ORM\JoinTable(name: 'cars_client')]
     #[ORM\JoinColumn(name: 'client_id', referencedColumnName: 'id')]
     #[ORM\InverseJoinColumn(name: 'car_id', referencedColumnName: 'id')]
@@ -37,6 +41,7 @@ class Client
     public function __construct()
     {
         $this->cars = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     public function getCars(): Collection
@@ -89,5 +94,17 @@ class Client
             'Full name' => $this->getFullName(),
             'Email' => $this->getEmail()
         ];
+    }
+
+    public function getOrder(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): void
+    {
+        if(!$this->orders->contains($order)) {
+            $this->orders->add($order);
+        }
     }
 }
