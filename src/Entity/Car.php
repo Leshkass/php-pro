@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Enum\BodyType;
-use App\Entity\Interface\CarInterface;
 use App\Repository\CarRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -13,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
 #[ORM\Table(name: 'car')]
-class Car implements CarInterface
+class Car
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
