@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Repository\OrderRepository;
-use App\Service\ServiceCostCalculator;
+use App\Entity\Order;
+use App\Interface\CalculatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +14,8 @@ use Symfony\Component\Routing\Attribute\Route;
 class OrderController extends AbstractController
 {
     #[Route('/{id}/total-cost', name: 'total-cost-order')]
-    public function index(int $id, OrderRepository $orderRepository, ServiceCostCalculator $calculator): Response
+    public function index(?Order  $order, CalculatorInterface $calculator): Response
     {
-        $order = $orderRepository->getById($id);
-
         if ($order === null) {
             return  new Response('Order is not found');
         }

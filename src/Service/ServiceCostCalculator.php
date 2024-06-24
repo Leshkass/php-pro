@@ -4,8 +4,9 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\Order;
+use App\Interface\CalculatorInterface;
 
-readonly class ServiceCostCalculator
+readonly class ServiceCostCalculator implements CalculatorInterface
 {
     public function calculateTotalCost(Order $order): int
     {
