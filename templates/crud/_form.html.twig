@@ -1,0 +1,28 @@
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    <div class="w-25">
+        {{ form_row(form.brand) }}
+    </div>
+
+    <div class="w-25">
+        {{ form_row(form.model) }}
+    </div>
+
+    <div class="w-25">
+        {{ form_row(form.year) }}</div>
+
+    <div class="w-25">
+        {{ form_row(form.color) }}
+    </div>
+
+    <div class="w-25">
+        {{ form_row(form.bodyType) }}
+    </div>
+
+    <div class="w-25">
+        {{ form_row(form.clients) }}
+    </div>
+ <button type="submit" class="btn btn-outline-success">Done</button>
+{{ form_end(form) }}
+

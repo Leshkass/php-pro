@@ -9,6 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 class CarRepository extends ServiceEntityRepository
 {
+    private const CAR_PAGE = 5;
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Car::class);
@@ -25,6 +26,17 @@ class CarRepository extends ServiceEntityRepository
             ->setParameter('color', $color)
             ->getQuery()
             ->getResult();
+    }
+
+    public function findPage(int $page =1)
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.id')
+            ->getQuery()
+            ->setFirstResult(self::CAR_PAGE * $page - self::CAR_PAGE)
+            ->setMaxResults(self::CAR_PAGE)
+            ->getResult();
+
     }
 
 

@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
 #[ORM\Table(name: 'car')]
@@ -19,6 +20,7 @@ class Car
     #[ORM\Column(type: Types::INTEGER)]
     private int $id;
 
+    #[Assert\Length(min: 3, minMessage: ' Brand must be longer than {{ limit }}characters')]
     #[ORM\Column(name: 'brand', type: 'string', length: 150)]
     private string $brand;
 
@@ -28,6 +30,7 @@ class Car
     #[ORM\Column(name: 'year', type: 'integer')]
     private int $year;
 
+    #[Assert\Length(min: 3, minMessage: 'Color must be longer than {{ limit }}characters')]
     #[ORM\Column(name: 'color', type: 'string', length: 50, nullable: true)]
     private ?string $color;
 
@@ -117,8 +120,7 @@ class Car
             'Model' => $this->getModel(),
             'Year' => $this->getYear(),
             'Color' => $this->getColor(),
-            'BodyType' => $this->getBodyType()
-
+            'BodyType' => $this->getBodyType()->value
         ];
 
     }
@@ -137,6 +139,11 @@ class Car
     public function getFullName(): string
     {
         return $this->brand . '  ' . $this->model . '  ' . $this->year;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 
 }
