@@ -21,7 +21,6 @@ class CarType extends AbstractType
         $builder->add('brand', TextType::class, [
             'label' => 'Brand',
             'attr' => [
-                'class' => 'sdfgsd',
                 'placeholder' => 'Brand car'
             ]
         ])
