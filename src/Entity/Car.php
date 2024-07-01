@@ -41,7 +41,7 @@ class Car
     private Collection $orders;
 
 
-    #[ORM\ManyToMany(targetEntity: Client::class, mappedBy: 'cars')]
+    #[ORM\ManyToMany(targetEntity: Client::class, mappedBy: 'cars', cascade: ["persist"])]
     private Collection $clients;
 
     public function __construct()
