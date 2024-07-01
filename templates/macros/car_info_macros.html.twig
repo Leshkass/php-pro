@@ -1,0 +1,4 @@
+{% macro car_info(car) %}
+    <h3>Car Info</h3>
+    <p>{{ car.fullInfo|join(', ') }}</p>
+{% endmacro %}

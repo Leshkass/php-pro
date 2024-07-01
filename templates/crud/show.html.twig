@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% from "macros/car_info_macros.html.twig" import car_info %}
+    {{ car_info(car) }}
+{% endblock %}
